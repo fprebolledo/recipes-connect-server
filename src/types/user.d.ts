@@ -7,4 +7,6 @@ interface User {
   createdAt: Date
 }
 
-export { User }
+type UserForm = Pick<User, 'username' | 'email' | 'password'>
+
+export type { User, UserForm }
