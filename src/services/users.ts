@@ -7,6 +7,7 @@ const userService = prismaClient.$extends({
     users: {
       async signUp (props: UserForm): Promise<User | null> {
         const password = hashPassword(props.password)
+        // search how to serialize objects
         return await prismaClient.users.create({ data: { ...props, password } })
       }
     }
