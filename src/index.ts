@@ -1,10 +1,10 @@
 import express, { type Application } from 'express'
-import userRouter from './routes/users'
 import cors from 'cors'
 import session from 'express-session'
 import passport from 'passport'
-import localStrategy from './strategies/local'
 import dotenv from 'dotenv'
+import { usersRouter, recipesRouter } from './routes'
+import localStrategy from './strategies/local'
 
 dotenv.config()
 
@@ -27,18 +27,19 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Routes
-app.use(userRouter)
+app.use(usersRouter)
+app.use(recipesRouter)
 
-// Auth middleware example
-app.use((req, res, next) => {
-  if (req.user) next()
-  else {
-    res.status(401).json({ message: 'Unauthorized' })
-  }
-})
-app.get('/', (_, res) => {
-  res.send('Hello World!')
-})
+// // Auth middleware example
+// app.use((req, res, next) => {
+//   if (req.user) next()
+//   else {
+//     res.status(401).json({ message: 'Unauthorized' })
+//   }
+// })
+// app.get('/', (_, res) => {
+//   res.send('Hello World!')
+// })
 
 try {
   app.listen(port, () => {
