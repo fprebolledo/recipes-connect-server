@@ -12,9 +12,31 @@ datasource db {
 
 model Users {
   id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   email     String   @unique
   username  String   @unique
   password  String
-  createdAt DateTime @default(now())
+  recipes   Recipes[]
+}
+
+model Recipes {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  title         String
+  author        Users    @relation(fields: [authorId], references: [id])
+  authorId      Int
+  ingredients   Ingredients[]
+  instructions  String   @db.Text
+}
+
+model Ingredients {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime   @default(now())
   updatedAt DateTime @updatedAt
+  name      String
+  amount    Float
+  recipe    Recipes  @relation(fields: [recipeId], references: [id])
+  recipeId  Int
 }
