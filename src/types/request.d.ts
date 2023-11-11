@@ -4,4 +4,4 @@ interface ApiRequest<T> extends Request {
   body: T
 }
 
-export type { ApiRequest, Response }
+export type { ApiRequest, Response, Request }

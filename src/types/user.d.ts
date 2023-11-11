@@ -1,10 +1,12 @@
+import type { Recipe } from './recipe'
 interface User {
   id: number
+  createdAt: Date
+  createdAt: Date
   email: string
   username: string
   password: string
-  createdAt: Date
-  createdAt: Date
+  recipes?: Recipe[]
 }
 
 type UserForm = Pick<User, 'username' | 'email' | 'password'>
