@@ -1,4 +1,4 @@
-import { prismaClient } from './prismaClient'
+import { prismaClient } from '../prismaClient'
 import { type User, type UserForm } from '../types/user'
 import { hashPassword } from '../utils/password'
 
